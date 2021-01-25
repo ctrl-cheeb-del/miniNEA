@@ -2,7 +2,7 @@ from datetime import date
 from time import time
 print(" ")
 print(" ")
-f = open('dragon.txt', 'r')
+f = open('swag_dragon.txt', 'r')
 content = f.read()
 print(content)
 f.close()
@@ -31,27 +31,90 @@ def Entrance():
 
 Entrance()
 
-print("Adult tickets:")
-print(" ")
-
-def validate():
+def validate_str():
     not_validated = True
     while not_validated:
         try:
-            print("How many tickets are required:")
+            print("")
             print(" ")
-            required_adult = int(input())
+            answer= str(input())
             not_validated = False
+            return answer
         except ValueError:
-            print(" ")
             print("You must enter a number:")
             print(" ")
 
-validate() 
+def validate_yes():
+	not_validated = True
+	while not_validated:
+		try:
+			response = input()
+			if response not in ['yes', 'no'] :
+				raise ValueError()
+			return response
+		except ValueError:
+			print("please only enter either yes or no")
 
-print(" ")
-print("Child tickets:")
-print(" ")
+def validate_num():
+    not_validated = True
+    while not_validated:
+        try:
+            print("")
+            print(" ")
+            answer = int(input())
+            not_validated = False
+            return answer
+        except ValueError:
+            print("You must enter a number:")
+            print(" ")
 
-validate()
+def required():
+    print("how many child tickets are needed: ")
+    global child_required
+    child_required = validate_num()
+    print("how many adult tickets are needed: ")
+    global adult_required
+    adult_required = validate_num()
+    print("how many senior tickets are needed: ")
+    global senior_required
+    senior_required = validate_num()
+    print("how many wristbands are needed: ")
+    global wristband_required
+    wristband_required = validate_num()
+    total_cost = (child_required*12) + (adult_required*20) + (senior_required*11) + (wristband_required*20)
+    return total_cost
+
+def car_park():
+    print("would you like a car pass?")
+    reply = validate_yes()
+
+def surname():
+    print("what is the surname of the person booking?")
+    booker_surname = validate_str()
+    return booker_surname
+
+
+def payment():
+    cost = required()
+    print("DISCLAIMER : we only accept 10 & 20 £ notes")
+    print(" ")
+    print("the required amount is", cost)
+    accepted = 0
+    while accepted <= cost:
+        print("youve payed" , accepted, "so far")
+        print("how many £10 notes will you use?")
+        ten_submitted = validate_num()*10
+        print("how many £20 notes will you use?")
+        twenty_submitted = validate_num()*20
+        accepted = accepted + twenty_submitted + ten_submitted
+    print("your change is ", accepted - cost)
+
+def final():
+    booker_surname = surname()
+    print("thank you ", booker_surname, "for booking with us on the", today, "hope to see you again soon!")
+
+Entrance()
+payment()
+car_park()
+final()
 
