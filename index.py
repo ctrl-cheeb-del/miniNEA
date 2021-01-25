@@ -49,6 +49,7 @@ def validate():
 
 validate() 
 
+print(" ")
 print("Child tickets:")
 print(" ")
 
