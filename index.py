@@ -107,13 +107,13 @@ def payment():
         print("how many £20 notes will you use?")
         twenty_submitted = validate_num()*20
         accepted = accepted + twenty_submitted + ten_submitted
-    print("your change is ", accepted - cost)
+        change = accepted - cost
+    print("you have", change, "change")
 
 def final():
     booker_surname = surname()
     print("thank you ", booker_surname, "for booking with us on the", today, "hope to see you again soon!")
 
-Entrance()
 payment()
 car_park()
 final()
