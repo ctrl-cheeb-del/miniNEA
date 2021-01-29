@@ -101,7 +101,7 @@ def payment():
     print("the required amount is", cost)
     accepted = 0
     while accepted <= cost:
-        print("youve payed" , accepted, "so far")
+        print("youve paid" , accepted, "so far")
         print("how many £10 notes will you use?")
         ten_submitted = validate_num()*10
         print("how many £20 notes will you use?")
